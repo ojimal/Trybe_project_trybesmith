@@ -1,5 +1,5 @@
 import { Pool, ResultSetHeader, RowDataPacket } from 'mysql2/promise';
-import Product from '../interfaces';
+import { Product } from '../interfaces';
 import connection from './connection';
 
 export default class ProductModel {
@@ -20,7 +20,7 @@ export default class ProductModel {
       );
       return { id: insertId, ...product };
     } catch (error) {
-      console.error('Failed to insert to database:', error);
+      console.error('Failed to insert product to database:', error);
       throw error;
     }
   };

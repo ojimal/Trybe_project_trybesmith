@@ -8,7 +8,7 @@ class ProductService {
     this.model = new ProductModel();
   }
 
-  async createProduct(product: Product): Promise<Product> {
+  createProduct = async (product: Product): Promise<Product> => {
     try {
       const createdProduct = await this.model.createProduct(product);
       return createdProduct;
@@ -16,7 +16,16 @@ class ProductService {
       console.error('Service failed to create Product:', error);
       throw error;
     }
-  }
+  };
+
+  getAllProducts = async (): Promise<Product[]> => {
+    try {
+      return await this.model.getAllProducts();    
+    } catch (error) {
+      console.error('Service failed to create Product:', error);
+      throw error;
+    }
+  };
 }
 
 export default ProductService;

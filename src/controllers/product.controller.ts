@@ -18,4 +18,14 @@ export default class ProductController {
       res.status(500).json({ error: 'Product Controller failed' });
     }
   };
+
+  public getAllProducts = async (_req: Request, res: Response) => {
+    try {
+      const products = await this.service.getAllProducts();
+  
+      res.status(200).json(products);
+    } catch (error) {
+      res.status(500).json({ error: 'Product Controller get products failed' });
+    }
+  };
 }

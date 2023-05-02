@@ -3,7 +3,7 @@ import { Product } from '../interfaces';
 import ProductService from '../services/product.service';
 
 export default class ProductController {
-  service: ProductService;
+  private service: ProductService;
 
   constructor() {
     this.service = new ProductService();

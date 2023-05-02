@@ -1,14 +1,13 @@
 import OrderModel from '../models/orders.model';
-import { Order } from '../interfaces';
 
 class OrderService {
-  model: OrderModel;
+  private model: OrderModel;
 
   constructor() {
     this.model = new OrderModel();
   }
 
-  getAllOrders = async (): Promise<Order[]> => {
+  getAllOrders = async () => {
     try {
       return await this.model.getAllOrders();
     } catch (error) {

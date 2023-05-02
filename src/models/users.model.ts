@@ -1,4 +1,4 @@
-import { Pool, ResultSetHeader } from 'mysql2/promise';
+import { Pool, ResultSetHeader, RowDataPacket } from 'mysql2/promise';
 import connection from './connection';
 import { User } from '../interfaces';
 
@@ -9,7 +9,7 @@ export default class UserModel {
     this.connection = connection;
   }
 
-  createUser = async (user: User): Promise<User> => {
+  createUser = async (user: User) => {
     try {
       const { username, vocation, level, password } = user;
       const [{ insertId }] = await this.connection.execute<ResultSetHeader>(
@@ -20,6 +20,21 @@ export default class UserModel {
       return { id: insertId, ...user };        
     } catch (error) {
       console.error('Failed to insert user to database:', error);
+      throw error;
+    }
+  };
+
+  login = async (username: string, password: string) => {
+    try {
+      const [rows] = await this.connection.execute<(
+      RowDataPacket)[]>(
+        'SELECT * FROM Trybesmith.users WHERE username = ? AND password = ?',
+        [username, password],
+        );
+      const [userLogin] = rows as User[];
+      return { ...userLogin };
+    } catch (error) {
+      console.error('Failed to get user from database:', error);
       throw error;
     }
   };

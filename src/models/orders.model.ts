@@ -9,7 +9,7 @@ export default class OrderModel {
     this.connection = connection;
   }
 
-  getAllOrders = async (): Promise<Order[]> => {
+  getAllOrders = async () => {
     try {
       const [orders] = await this.connection.execute<(Order & RowDataPacket)[]>(
         `SELECT o.id, o.user_id AS userId, 

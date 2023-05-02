@@ -11,7 +11,7 @@ export default class ProductModel {
 
   // public so this method can be access outside the class
 
-  public createProduct = async (product: Product): Promise<Product> => {
+  public createProduct = async (product: Product) => {
     try {
       const { name, amount } = product;
       const [{ insertId }] = await this.connection.execute<ResultSetHeader>(
@@ -25,7 +25,7 @@ export default class ProductModel {
     }
   };
 
-  public getAllProducts = async (): Promise<Product[]> => {
+  public getAllProducts = async () => {
     try {
       const [products] = await this.connection.execute<(Product & RowDataPacket)[]>(
         'SELECT * FROM Trybesmith.products;');

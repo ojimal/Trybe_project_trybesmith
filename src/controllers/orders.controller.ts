@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import OrderService from '../services/orders.service';
 
 class OrdersController {
-  service: OrderService;
+  private service: OrderService;
 
   constructor() {
     this.service = new OrderService();

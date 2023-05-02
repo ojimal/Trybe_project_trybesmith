@@ -2,13 +2,13 @@ import ProductModel from '../models/product.model';
 import { Product } from '../interfaces';
 
 class ProductService {
-  model: ProductModel;
+  private model: ProductModel;
 
   constructor() {
     this.model = new ProductModel();
   }
 
-  createProduct = async (product: Product): Promise<Product> => {
+  createProduct = async (product: Product) => {
     try {
       const createdProduct = await this.model.createProduct(product);
       return createdProduct;
@@ -18,7 +18,7 @@ class ProductService {
     }
   };
 
-  getAllProducts = async (): Promise<Product[]> => {
+  getAllProducts = async () => {
     try {
       return await this.model.getAllProducts();    
     } catch (error) {

@@ -1,14 +1,14 @@
 import UserModel from '../models/users.model';
 import { User } from '../interfaces';
 
-class UserService {
-  model: UserModel;
+export default class UserService {
+  private model: UserModel;
 
   constructor() {
     this.model = new UserModel();
   }
 
-  createUser = async (user: User): Promise<User> => {
+  createUser = async (user: User) => {
     try {
       return await this.model.createUser(user);
     } catch (error) {
@@ -16,6 +16,13 @@ class UserService {
       throw error;
     }
   };
-}
 
-export default UserService;
+  login = async (username: string, password: string) => {
+    try {
+      return await this.model.login(username, password);
+    } catch (error) {
+      console.error('Service failed to Login:', error);
+      throw error;
+    }
+  };
+}

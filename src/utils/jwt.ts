@@ -1,9 +1,9 @@
-import jwt from 'jsonwebtoken';
+import jwt, { SignOptions } from 'jsonwebtoken';
 import { User } from '../interfaces';
 
 const secretKey = process.env.JWT_SECRET || 'JWT_SECRET';
 
-const config: object = {
+const config: SignOptions = {
   expiresIn: '7d',
   algorithm: 'HS256',
 };
